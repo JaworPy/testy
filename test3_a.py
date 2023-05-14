@@ -53,6 +53,7 @@ while(pokracovat == "ano"):
                 header_written = True
 
         # zapsání vybraných řádků do souboru
+        pocet = 0
         for root, dirs, files in os.walk(csv_files_path):
             for file in files:
                 file_path = os.path.join(root, file)
@@ -61,6 +62,7 @@ while(pokracovat == "ano"):
                     for row in reader:
                         if row["Název obce"] == obec and row["Název ulice"] == ulice:
                             writer.writerow(row.values())
-    print(f"\nVybraná data jsou uložena v souboru {nazev_csv}\nNajdete jej ve stejném adresáři, ze kterého spouštíte tento script\nJe zde také podadresář {csv_files} s daty všech obcí")
+                            pocet += 1
+    print(f"\nVybraná data jsou uložena v souboru {nazev_csv}, který obsahuje {pocet} adres\nNajdete jej ve stejném adresáři, ze kterého spouštíte tento script\nJe zde také podadresář {csv_files} s daty všech obcí")
     pokracovat = input ("\nPřeješ si zadat další obec a ulici? (ano/ne): ")
 print("\nDíky za použití programu")
